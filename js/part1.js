@@ -4,8 +4,8 @@ document.getElementById("get-btn").addEventListener("click", async () => {
     // This function should send a GET request to the echo endpoint and output the result
     // The two input fields should be included in the request URL as **query parameters**
     try {
-        let name = '';
-        let age = '';
+        let name = document.getElementById('name');
+        let age = document.getElementById('age');
 
         let query = new URLSearchParams({q: query, page: pageNum});
 
