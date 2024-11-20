@@ -8,8 +8,9 @@ document.getElementById("get-btn").addEventListener("click", async () => {
         let age = document.getElementById('age');
 
         let query = new URLSearchParams({q: query, page: pageNum});
+        let url = 'https://echo.zuplo.io/api?' + query.toString();
 
-        let response = await fetch('https://echo.zuplo.io/api?' + query.toString());
+        let response = await fetch(url);
         let data = await response.json();
 
         console.log(data);
