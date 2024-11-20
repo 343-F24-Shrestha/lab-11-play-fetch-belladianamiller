@@ -6,10 +6,13 @@ document.getElementById("get-btn").addEventListener("click", async () => {
     try {
         let name = document.getElementById('name').value;
         let age = document.getElementById('age').value;
+
         let query = new URLSearchParams({name, age});
         let url = 'https://echo.zuplo.io/api?' + query.toString();
+
         let response = await fetch(url);
         console.log(response);
+        
         let data = await response.json();
         output.textContent = JSON.stringify(data, null, 2);
 
