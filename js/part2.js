@@ -1,10 +1,30 @@
 const userList = document.getElementById("user-list");
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // This function should GET the first page of users from reqres.in.
-    // The users should be displayed in the user-list element.
-    // Each user should be in a new <div> with the user's first name, last name, and profile image.
-    // The format should follow the example user in the HTML file.
+    try {
+        let response = await fetch("https://reqres.in/api/users?page=1");
+        if (!response.ok) {
+            throw new Error("Error fetching users");
+        }
+        let data = await response.json();
+        let users = data.data;
 
-    // TODO
+        users.forEach(user => {
+            let card = document.createElement("div");
+            card.className = "card";
+
+            let userName = document.createElement("h2");
+            userName.textContent = user.first_name + " " + user.last_name;;
+
+            let userImage = document.createElement("img");
+            userImage.src = user.avatar;
+            userImage.alt = user.first_name + " " + user.last_name;
+
+            card.appendChild(userName);
+            card.appendChild(userImage);
+            userList.appendChild(card);
+        });
+    } catch (error) {
+        console.error("Error: " + error);
+    }
 });
